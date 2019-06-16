@@ -17,8 +17,8 @@ addons:
     packages:
       - rpm
 
-env:
-  - GO111MODULE=on
+# env:
+#   - GO111MODULE=on
 
 # Tell Travis not to do magic on our behalf
 # See https://arslan.io/2018/08/26/using-go-modules-with-vendor-support-on-travis-ci/
@@ -26,7 +26,7 @@ install: true
 
 script:
   - go install github.com/go-task/task/cmd/task
-  - task ci
+  - env GO111MODULE=on task ci
 
 deploy:
   - provider: script
