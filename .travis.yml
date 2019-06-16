@@ -8,14 +8,18 @@ go:
   - 1.11.x
   - 1.12.x
 
+# Building on Windows for 1.12 we get
+#   travis_install_go_dependencies 1.12.x -v
+#   go get: warning: modules disabled by GO111MODULE=auto in GOPATH/src;
+
 addons:
   apt:
     packages:
       - rpm
 
 script:
-  - go install github.com/go-task/task/cmd/task
-  - task ci
+  - env GO111MODULE=on go install github.com/go-task/task/cmd/task
+  - env GO111MODULE=on task ci
 
 deploy:
   - provider: script
